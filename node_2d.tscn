@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c65sbdmh62xvc"]
+
+[ext_resource type="Script" uid="uid://c7brk01e57tmf" path="res://MyTest.cs" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://dmugvcm8lhmr3" path="res://coroutine/CoroutineTest2.cs" id="2_0e48y"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_wtcfe")
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("2_0e48y")
