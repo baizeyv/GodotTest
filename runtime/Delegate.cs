@@ -15,3 +15,7 @@ public delegate void TweenCallback<T>(T value);
 /// * 曲线Func方法委托
 /// </summary>
 public delegate float EaseFunction(float time, float duration, float overshootOrAmplitude, float period);
+
+public delegate T DOGetter<out T>();
+
+public delegate void DOSetter<in T>(T pNewValue);
