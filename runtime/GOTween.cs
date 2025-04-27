@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using Godot;
+using GT.Tweening.Options;
 
 namespace GT.Tweening;
 
@@ -112,10 +115,120 @@ public class GOTween
     /// * 默认部分曲线周期
     /// </summary>
     public static float defaultEasePeriod = 0.0f;
-    
-    // TODO:
+
+    public static GOTweenNode instance;
+
+    private static bool _foo_isQuitting;
+
+    internal static int maxActiveTweenersReached;
+
+    internal static int maxActiveSequencesReached;
     
     internal static SafeModeReport safeModeReport;
+    
+    // TODO:
 
+    internal static bool initialized;
+
+    private static int _isQuittingFrame = -1;
+
+    public static LogBehaviour logBehaviour
+    {
+        get => GOTween._logBehaviour;
+        set
+        {
+            _logBehaviour = value;
+            Debugger.SetLogPriority(_logBehaviour);
+        }
+    }
+
+    public static bool debugStoreTargetId
+    {
+        get => debugMode && useSafeMode && _fooDebugStoreTargetId;
+        set => _fooDebugStoreTargetId = value;
+    }
+
+    internal static bool isQuitting
+    {
+        get
+        {
+            if (!_foo_isQuitting)
+                return false;
+            if (Engine.GetFramesDrawn() < 0 || _isQuittingFrame == Engine.GetFramesDrawn())
+                return true;
+            _foo_isQuitting = false;
+            return false;
+        }
+        set
+        {
+            _foo_isQuitting = value;
+            if (!value)
+                return;
+            _isQuittingFrame = Engine.GetFramesDrawn();
+        }
+    }
+
+
+    public static IGOTweenInit Init(bool? recycleAllByDefault = null, bool? useSafeMode = null, LogBehaviour? logBehaviour = null)
+    {
+        if (initialized)
+            return GOTween.instance;
+        // TODO:init arguments (Load)
+        return Engine.IsEditorHint() || GOTween.isQuitting ? null : GOTween.Init(rr);
+    }
+
+    private static void AutoInit()
+    {
+        // TODO:
+    }
+
+    private static IGOTweenInit Init(GOTweenSettings settings, bool? recycleAllByDefault, bool? useSafeMode, LogBehaviour? logBehaviour)
+    {
+        initialized = true;
+        if (recycleAllByDefault.HasValue)
+            defaultRecyclable = recycleAllByDefault.Value;
+        if (useSafeMode.HasValue)
+            GOTween.useSafeMode = useSafeMode.Value;
+        if (logBehaviour.HasValue)
+            GOTween.logBehaviour = logBehaviour.Value;
+        // TODO:
+    }
+
+
+    public static void SetTweensCapacity(int tweenersCapacity, int sequencesCapacity)
+    {
+        // TODO:
+    }
+
+    public static void Clear(bool destroy = false)
+    {
+        // TODO:
+    }
+
+    internal static void Clear(bool destroy, bool isApplicationQuitting)
+    {
+        // TODO;
+    }
+
+    public static void ClearCachedTweens()
+    {
+        // TODO:
+    }
+
+    public static int Validate()
+    {
+        // TODO:
+    }
+
+    public static void ManualUpdate(float deltaTime, float unscaledDeltaTime)
+    {
+        // TODO:
+    }
+
+    public static TweenerCore<float, float, FloatOptions> To(DOGetter<float> getter, DOSetter<float> setter, float endValue, float duration)
+    {
+        // TODO:
+    }
+    
     // TODO:
 }

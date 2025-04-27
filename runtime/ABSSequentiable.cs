@@ -24,4 +24,6 @@ public abstract class ABSSequentiable
     /// * 动画起始回调
     /// </summary>
     internal TweenCallback onStart;
+    
+    protected ABSSequentiable() : base(){}
 }

@@ -37,6 +37,19 @@ public static class Debugger
         // TODO:
     }
 
+    public static void SetLogPriority(LogBehaviour logBehaviour)
+    {
+        if (logBehaviour != LogBehaviour.Default)
+        {
+            if (logBehaviour == LogBehaviour.Verbose)
+                _logPriority = 2;
+            else
+                _logPriority = 0;
+        }
+        else
+            _logPriority = 1;
+    }
+
     /// <summary>
     /// * 安全模式中是否捕捉错误Error
     /// </summary>
